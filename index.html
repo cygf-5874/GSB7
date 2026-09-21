@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>时间树界：生存竞技</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <canvas id="gameCanvas"></canvas>
+
+    <div id="topTimer" class="hud-panel">
+      <div class="timer-caption">剩余生存时间</div>
+      <div id="timeValue">05:00</div>
+      <div id="zoneLabel">外环荒原</div>
+    </div>
+
+    <aside id="minimapPanel" class="hud-panel">
+      <canvas id="minimapCanvas" width="210" height="210"></canvas>
+      <div class="map-title">世界树界域</div>
+    </aside>
+
+    <aside id="rightPanel">
+      <div class="hud-panel rank-card">
+        <div><span id="aliveCount">12</span><small>存活</small></div>
+        <div><span id="killCount">0</span><small>击杀</small></div>
+        <div><span id="rankValue">12</span><small>排名</small></div>
+      </div>
+      <div id="killFeed"></div>
+    </aside>
+
+    <footer id="bottomHud">
+      <div class="hud-panel survival-card">
+        <div class="stat-row">
+          <span class="hp-icon">✚</span>
+          <div class="bar"><i id="hpFill"></i></div>
+          <b id="hpText">100</b>
+        </div>
+        <div class="stat-row secondary">
+          <span>等级 <b id="levelValue">1</b></span>
+          <div class="bar xp"><i id="xpFill"></i></div>
+          <span id="goldValue">◆ 0</span>
+        </div>
+        <div id="petStatus">尚未契约稀有伙伴</div>
+      </div>
+
+      <div id="weaponBar"></div>
+
+      <div class="hud-panel skill-card">
+        <button id="skillButton" type="button"><b>Q</b><span>武器技能</span></button>
+        <button id="dashButton" type="button"><b>空格</b><span>疾冲</span></button>
+        <button id="interactButton" type="button"><b>E</b><span>开箱</span></button>
+        <button id="itemButton" type="button"><b>R</b><span>道具</span></button>
+      </div>
+    </footer>
+
+    <div id="toast"></div>
+
+    <div id="startOverlay" class="overlay">
+      <div class="overlay-card">
+        <p class="eyebrow">2D 俯视角 · 时间即生命</p>
+        <h1>时间树界</h1>
+        <p class="subtitle">从外环杀向世界树，夺时间、猎怪物、开宝箱、契约稀有伙伴，成为最后幸存者。</p>
+        <div class="control-grid">
+          <span><b>WASD</b> 移动</span>
+          <span><b>鼠标</b> 瞄准 / 攻击</span>
+          <span><b>Q / 右键</b> 武器技能</span>
+          <span><b>E</b> 开启宝箱</span>
+          <span><b>空格</b> 疾冲</span>
+          <span><b>1-4 / R / B</b> 切武器 / 药剂 / 雷囊</span>
+        </div>
+        <button id="startButton" type="button">进入对局</button>
+        <p class="tip">倒计时归零立即出局；击杀玩家可掠夺其一半剩余时间。</p>
+      </div>
+    </div>
+
+    <div id="gameOverOverlay" class="overlay hidden">
+      <div class="overlay-card">
+        <p class="eyebrow">对局结束</p>
+        <h2 id="resultTitle">你被淘汰了</h2>
+        <div class="result-stats">
+          <div><b id="resultRank">#--</b><small>最终排名</small></div>
+          <div><b id="resultKills">0</b><small>击杀</small></div>
+          <div><b id="resultLevel">1</b><small>等级</small></div>
+          <div><b id="resultGold">0</b><small>金币</small></div>
+        </div>
+        <button id="restartButton" type="button">再来一局</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="game.js"></script>
+</body>
+</html>
